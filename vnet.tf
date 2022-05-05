@@ -14,8 +14,5 @@ resource "azurerm_virtual_network" "main" {
     address_prefix = "${var.subnet2_address_prefix}"
   }
 
-  tags = {
-    environment = "${var.tag_environment}"
-    owner-department = "${var.tag_owner}"
-  }
+  tags = "${var.default_tags}"
 }
