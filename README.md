@@ -59,7 +59,7 @@ module "virtual-network" {
   source  = "spy86/virtual-network/azure"
   version = "1.0.1"
   resource_group_name = "weu-test-rg"
-  environment = "deb"
+  environment = "dev"
   region = "weu"
   resource_group_location = "West Europe"
   subnet1_address_prefix = "10.0.1.0/24"
