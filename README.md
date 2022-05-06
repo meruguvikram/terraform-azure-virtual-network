@@ -34,7 +34,7 @@ No modules.
 | <a name="input_region"></a> [region](#input\_region) | Region in which resources are deployed | `string` | `"weu"` | no |
 | <a name="input_resource_group_location"></a> [resource\_group\_location](#input\_resource\_group\_location) | The location/region where the virtual network is created. Changing this forces a new resource to be created. | `string` | `"West Europe"` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group in which to create the virtual network. | `string` | n/a | yes |
-| <a name="input_subnet_prefix"></a> [subnet\_prefix](#input\_subnet\_prefix) | The address prefix and name to use for the subnet. | `list` | <pre>[<br>  {<br>    "ip": "10.0.1.0/24",<br>    "name": "Subnet-1"<br>  },<br>  {<br>    "ip": "10.0.2.0/24",<br>    "name": "Subnet-2"<br>  }<br>]</pre> | no |
+| <a name="input_subnet_prefix"></a> [subnet\_prefix](#input\_subnet\_prefix) | The address prefix and name to use for the subnet. | `map(any)` | <pre>{<br>  "subnet_1": {<br>    "ip": [<br>      "10.0.1.0/24"<br>    ],<br>    "name": "Subnet_1"<br>  },<br>  "subnet_2": {<br>    "ip": [<br>      "10.0.2.0/24"<br>    ],<br>    "name": "Subnet_2"<br>  }<br>}</pre> | no |
 | <a name="input_vnet_address_space"></a> [vnet\_address\_space](#input\_vnet\_address\_space) | The address space that is used the virtual network. You can supply more than one address space. | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | The name of the virtual network. Changing this forces a new resource to be created. | `string` | `"VirtualNetwork1"` | no |
 
@@ -43,15 +43,11 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_address_space"></a> [address\_space](#output\_address\_space) | The list of address spaces used by the virtual network. |
+| <a name="output_azure_subnet_id"></a> [azure\_subnet\_id](#output\_azure\_subnet\_id) | Lists the ID's of the subnets |
 | <a name="output_id"></a> [id](#output\_id) | The virtual NetworkConfiguration ID. |
 | <a name="output_location"></a> [location](#output\_location) | The location/region where the virtual network is created. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the virtual network. |
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | The name of the resource group in which to create the virtual network. |
-| <a name="output_subnet_address_prefixes"></a> [subnet\_address\_prefixes](#output\_subnet\_address\_prefixes) | The address prefixes for the subnet |
-| <a name="output_subnet_id"></a> [subnet\_id](#output\_subnet\_id) | The subnet ID |
-| <a name="output_subnet_name"></a> [subnet\_name](#output\_subnet\_name) | The name of the subnet |
-| <a name="output_subnet_resource_group_name"></a> [subnet\_resource\_group\_name](#output\_subnet\_resource\_group\_name) | The name of the resource group in which the subnet is created in. |
-| <a name="output_subnet_virtual_network_name"></a> [subnet\_virtual\_network\_name](#output\_subnet\_virtual\_network\_name) | The name of the virtual network in which the subnet is created in |
 <!-- END_TF_DOCS -->
 
 ## How to use
@@ -59,23 +55,27 @@ No modules.
 ```
 module "virtual-network" {
   source  = "spy86/virtual-network/azure"
-  version = "1.0.2"
+  version = "1.0.8"
   resource_group_name = "weu-test-rg"
   environment = "dev"
   region = "weu"
   resource_group_location = "West Europe"
   vnet_address_space = "10.0.0.0/16"
   vnet_name = "VirtualNetwork"
-  subnet_prefix = [
-  {
-    "ip": "10.0.1.0/24",
-    "name": "Subnet-1"
-  },
-  {
-    "ip": "10.0.2.0/24",
-    "name": "Subnet-2"
+  subnet_prefix = {
+    subnet_1 = {
+      ip = ["10.0.1.0/24"]
+      name  = "Subnet_1"
+    }
+    subnet_2 = {
+      ip = ["10.0.2.0/24"]
+      name = "Subnet_2"
+    }
+    subnet_3 = {
+      ip = ["10.0.3.0/24"]
+      name = "Subnet_3"
+    }
   }
-]
   default_tags = {
       Administrator = "Someone"
       Department = "IT"
