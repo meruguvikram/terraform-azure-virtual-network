@@ -55,7 +55,7 @@ No modules.
 ```
 module "virtual-network" {
   source  = "spy86/virtual-network/azure"
-  version = "1.0.8"
+  version = "1.0.9"
   resource_group_name = "weu-test-rg"
   environment = "dev"
   region = "weu"
