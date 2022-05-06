@@ -28,12 +28,6 @@ output "address_space" {
   sensitive = false
 }
 
-output "subnet_id" {
-  description = "The subnet ID"
-  value       = "${azurerm_subnet.main.*.id}"
-  sensitive = false
-}
-
 output "azure_subnet_id" {
     description = "Lists the ID's of the subnets"
     value = {
