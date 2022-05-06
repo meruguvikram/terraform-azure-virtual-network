@@ -42,15 +42,18 @@ variable "vnet_address_space" {
 }
 variable "subnet_prefix" {
   description = "The address prefix and name to use for the subnet."
-  type = "list"
+  type = list(object({
+    ip = string
+    name = string
+  }))
   default = [
     {
-      ip      = "10.0.1.0/24"
-      name     = "Subnet-1"
+      ip = "10.0.1.0/24"
+      name = "Subnet-1"
     },
     {
-      ip      = "10.0.2.0/24"
-      name     = "Subnet-2"
+      ip = "10.0.2.0/24"
+      name = "Subnet-2"
     }
-   ]
+  ]
 }
