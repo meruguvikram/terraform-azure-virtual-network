@@ -28,7 +28,7 @@ variable "resource_group_name" {
   type = string
 }
 ############################
-#VNET variable
+#VNET&SUBNET variable
 ############################
 variable "vnet_name" {
     description = "The name of the virtual network. Changing this forces a new resource to be created."
@@ -40,23 +40,17 @@ variable "vnet_address_space" {
     type = string
     default = "10.0.0.0/16"
 }
-variable "subnet1_name" {
-    description = "The name of the subnet."
-    type = string
-    default = "Subnet-1"
-}
-variable "subnet1_address_prefix" {
-    description = "The address prefix to use for the subnet."
-    type = string
-    default = "10.0.1.0/24"
-}
-variable "subnet2_name" {
-    description = "The name of the subnet."
-    type = string
-    default = "Subnet-2"
-}
-variable "subnet2_address_prefix" {
-    description = "The address prefix to use for the subnet."
-    type = string
-    default = "10.0.2.0/24"
+variable "subnet_prefix" {
+  description = "The address prefix and name to use for the subnet."
+  type = "list"
+  default = [
+    {
+      ip      = "10.0.1.0/24"
+      name     = "Subnet-1"
+    },
+    {
+      ip      = "10.0.2.0/24"
+      name     = "Subnet-2"
+    }
+   ]
 }

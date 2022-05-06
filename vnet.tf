@@ -4,15 +4,5 @@ resource "azurerm_virtual_network" "main" {
   resource_group_name = "${data.azurerm_resource_group.rg.name}"
   address_space       = ["${var.vnet_address_space}"]
 
-  subnet {
-    name           = "${var.subnet1_name}"
-    address_prefix = "${var.subnet1_address_prefix}"
-  }
-
-  subnet {
-    name           = "${var.subnet2_name}"
-    address_prefix = "${var.subnet2_address_prefix}"
-  }
-
   tags = "${var.default_tags}"
 }

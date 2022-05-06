@@ -28,8 +28,32 @@ output "address_space" {
   sensitive = false
 }
 
-output "subnet" {
-  description = "One or more subnet ID"
-  value       = "${azurerm_virtual_network.main.*.id}"
+output "subnet_id" {
+  description = "The subnet ID"
+  value       = "${azurerm_subnet.main.*.id}"
+  sensitive = false
+}
+
+output "subnet_name" {
+  description = "The name of the subnet"
+  value       = "${azurerm_subnet.main.*.name}"
+  sensitive = false
+}
+
+output "subnet_resource_group_name" {
+  description = "The name of the resource group in which the subnet is created in."
+  value       = "${azurerm_subnet.main.*.resource_group_name}"
+  sensitive = false
+}
+
+output "subnet_virtual_network_name" {
+  description = "The name of the virtual network in which the subnet is created in"
+  value       = "${azurerm_subnet.main.*.virtual_network_name}"
+  sensitive = false
+}
+
+output "subnet_address_prefixes" {
+  description = "The address prefixes for the subnet"
+  value       = "${azurerm_subnet.main.*.address_prefixes}"
   sensitive = false
 }
