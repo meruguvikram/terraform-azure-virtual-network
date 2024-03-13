@@ -13,7 +13,7 @@ features {}
 
 module "virtual-network" {
   source  = "Think-Cube/virtual-network/azure"
-  version = "1.0.11"
+  version = "1.0.0"
   resource_group_name = "weu-test-rg"
   environment = "dev"
   region = "weu"
