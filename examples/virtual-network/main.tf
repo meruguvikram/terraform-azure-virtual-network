@@ -3,8 +3,8 @@ features {}
 }
 
 module "virtual-network" {
-  source  = "spy86/virtual-network/azure"
-  version = "1.0.11"
+  source  = "Think-Cube/virtual-network/azure"
+  version = "1.0.0"
   resource_group_name = "weu-test-rg"
   environment = "dev"
   region = "weu"
@@ -26,10 +26,10 @@ module "virtual-network" {
     }
   }
   default_tags = {
-      Administrator = "Someone"
-      Department = "IT"
-      CostCentre = "ABC123"
-      ContactPerson = "Someone@example.com"
+      Administrator     = "John Doe"
+      Department        = "IT"
+      CostCentre        = "CC123"
+      ContactPerson     = "Jane Smith"
       ManagedByTerraform = "True"
-}
+} 
 }
