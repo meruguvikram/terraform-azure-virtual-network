@@ -1,19 +1,11 @@
 version: 2
 environments:
-  - name: .* # Use a regular expression to match all environments
+  - name: .*
     deploy:
       steps:
         terraformPlan:
           before:
             - name: TFLint Scan
-              use: https://github.com/env0/env0-tflint-plugin
-              inputs:
-                version: v0.48.0
-                directory: .
-                flags: --module --recursive
+              run: tflint
             - name: TFSec Scan
-              use: https://github.com/env0/env0-tfsec-plugin
-              inputs:
-                version: v1.28.0
-                directory: .
-                flags: --format json --out results.json
+              run: tfsec
