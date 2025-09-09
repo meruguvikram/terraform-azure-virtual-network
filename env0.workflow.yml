@@ -1,11 +1,9 @@
 version: 2
-environments:
-  - name: .*
-    deploy:
-      steps:
-        terraformPlan:
-          before:
-            - name: TFLint Scan
-              run: tflint
-            - name: TFSec Scan
-              run: tfsec
+deploy:
+  steps:
+    terraformPlan:
+      before:
+        - name: TFLint Scan
+          run: tflint
+        - name: TFSec Scan
+          run: tfsec
