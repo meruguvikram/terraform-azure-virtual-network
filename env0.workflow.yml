@@ -1,21 +1,17 @@
 version: 2
-shell: bash
-
 deploy:
   steps:
-    opentofuInit: {}
-    opentofuPlan:
+    terraformPlan:
       before:
-        - tflint
-        - tfsec
-    opentofuApply: {}
-    opentofuOutput: {}
-
-destroy:
-  steps:
-    opentofuInit: {}
-    opentofuPlan:
-      before:
-        - tflint
-        - tfsec
-    opentofuDestroy: {}
+        - name: TFLint Scan
+          use: https://github.com/env0/env0-tflint-plugin
+          inputs:
+            version: v0.48.0
+            directory: .
+            flags: --module --recursive
+        - name: TFSec Scan
+          use: https://github.com/env0/env0-tfsec-plugin
+          inputs:
+            version: v1.28.0
+            directory: .
+            flags: --format json --out results.json
