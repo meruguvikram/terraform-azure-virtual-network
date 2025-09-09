@@ -1,8 +1,8 @@
 environments:
   infra:
     name: "Infra Deployment"
-    templateName: "terraform"
+    templateName: "opentofu"   # or "opentofu" if you’re using tofu
     vcs:
-      type: "terraform"
-      repo: "vikitech-tofu-deploy-template-85849"
+      type: "opentofu"
+      repo: "vikitech-tofu-deploy-template-31690"
       path: "infra"
