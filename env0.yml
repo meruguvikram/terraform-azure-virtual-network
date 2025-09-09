@@ -1,0 +1,30 @@
+version: 2
+shell: bash
+
+deploy:
+  steps:
+    opentofuInit: {}
+
+    opentofuPlan:
+      before:
+        - echo "Running tflint..."
+        - tflint
+        - echo "Running tfsec..."
+        - tfsec
+
+    opentofuApply: {}
+    storeState: {}
+    opentofuOutput: {}
+
+destroy:
+  steps:
+    opentofuInit: {}
+
+    opentofuPlan:
+      before:
+        - echo "Running tflint..."
+        - tflint
+        - echo "Running tfsec..."
+        - tfsec
+
+    opentofuDestroy: {}
