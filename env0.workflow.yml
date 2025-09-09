@@ -2,8 +2,8 @@ version: 2
 deploy:
   steps:
     terraformPlan:
-      before:
-        - name: TFLint Scan
-          run: tflint
-        - name: TFSec Scan
-          run: tfsec
+      after:
+        - name: Enforce Networking Policies  
+          run: ./enforce-networking-policies-script.sh
+          env:
+            FOO: bar
