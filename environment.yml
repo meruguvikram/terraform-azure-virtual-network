@@ -1,7 +1,7 @@
 environments:
   infra:
     name: "Infra Deployment"
-    templateName: "opentofu"
+    templateName: "terraform"
     vcs:
       type: "terraform"
       repo: "vikitech-tofu-deploy-template-85849"
